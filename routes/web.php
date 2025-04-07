@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/my-place', 'MyPlaceController@index');
+
+Route::get('/test', 'TestController@getTestName');
