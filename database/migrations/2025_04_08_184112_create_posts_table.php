@@ -6,31 +6,33 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePostsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->string('image')->nullable();
-            $table->unsignedInteger('likes')->nullable();
-            $table->boolean('is_published')->default(1);
-            $table->timestamps();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('posts', function (Blueprint $table) {
+			$table->id();
+			$table->string('title');
+			$table->text('content');
+			$table->string('image')->nullable();
+			$table->unsignedInteger('likes')->nullable();
+			$table->boolean('is_published')->default(1);
+			$table->timestamps();
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('posts');
-    }
+			$table->softDeletes();
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('posts');
+	}
 }

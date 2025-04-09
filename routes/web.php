@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
-Route::get('/my-place', 'MyPlaceController@index');
-
-Route::get('/test', 'TestController@getTestName');
+Route::get('/posts', 'PostController@index');
+Route::get('/posts/create', 'PostController@create');
+Route::get('/posts/update', 'PostController@update');
+Route::get('/posts/delete', 'PostController@delete');
