@@ -50,4 +50,36 @@ class PostController extends Controller
 		$post = Post::withTrashed()->find(1);
 		$post->restore();
 	}
+
+	public function firstOrCreate()
+	{
+		$result = Post::firstOrCreate(
+			['title' => 'firstOrCreate title from php'],
+			[
+				'title' => 'firstOrCreate title from php',
+				'content' => 'content firstOrCreate',
+				'image' => 'img',
+				'is_published' => 1,
+				'likes' => 20
+			]
+		);
+
+		dd($result);
+	}
+
+	public function updateOrCreate()
+	{
+		$result = Post::updateOrCreate(
+			['title' => 'firstOrCreat1e title from php'],
+			[
+				'title' => 'updateOrCreate title from php',
+				'content' => 'content Create',
+				'image' => 'img',
+				'is_published' => 0,
+				'likes' => 20
+			]
+		);
+
+		dd($result);
+	}
 }
