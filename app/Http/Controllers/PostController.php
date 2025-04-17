@@ -10,39 +10,52 @@ class PostController extends Controller
 	public function index()
 	{
 		$posts = Post::all();
-		return view('posts', compact('posts'));
+		return view('post.index', compact('posts'));
 	}
 
 	public function create()
 	{
-	$postsArr = [
-		[
-			'title' => 'title from php',
-			'content' => 'content from php',
-			'image' => 'img',
-			'is_published' => 1,
-			'likes' => 25
-		],
-		[
-			'title' => 'second title from php',
-			'content' => 'content from php',
-			'image' => 'img',
-			'is_published' => 1,
-			'likes' => 2
-		]
-	];
-
-		foreach($postsArr as $post) {
-			Post::create($post);
-		}
+		return view('post.create');
 	}
 
-	public function update()
+	public function store()
 	{
-		$post = Post::find(3);
-		$post->update([
-			'title' => 'updated from php'
+		$postInfo = request()->validate([
+			'title' => 'string',
+			'content' => 'string',
+			'image' => 'string'
 		]);
+
+		Post::create($postInfo);
+		return redirect()->route('posts.index');
+	}
+
+	public function show(Post $post)
+	{
+		return view('post.show', compact('post'));
+	}
+
+	public function edit(Post $post)
+	{
+		return view('post.edit', compact('post'));
+	}
+
+	public function update(Post $post)
+	{
+		$postInfo = request()->validate([
+			'title' => 'string',
+			'content' => 'string',
+			'image' => 'string'
+		]);
+
+		$post->update($postInfo);
+		return redirect()->route('posts.show', $post->id);
+	}
+
+	public function destroy(Post $post)
+	{
+		$post->delete();
+		return redirect()->route('posts.index');
 	}
 
 	public function delete()
