@@ -16,4 +16,9 @@ class Post extends Model
 	protected $table = 'posts';
 	//Для возможности добавление данных в таблицу $table
 	protected $guarded = [];
+
+	public function tags()
+	{
+		return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
+	}
 }
