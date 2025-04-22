@@ -18,10 +18,23 @@
 			</div>
 
 			<select class="form-select mb-3" aria-label="Select category" name="category_id">
+				<label class="form-label">Category</label>
 				@foreach($categories as $category)
 					<option value="{{ $category->id }}"> {{ $category->title }}</option>
 				@endforeach
 			</select>
+
+			<div class="mb-3">
+				<label class="form-label">Tag</label>
+				@foreach($tags as $tag)
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="{{ $tag->id }}" name="tags[]">
+						<label class="form-check-label" for="{{ $tag->id }}">
+							{{ $tag->title }}
+						</label>
+					</div>
+				@endforeach
+			</div>
 
 			<button type="submit" class="btn btn-primary">Add post</button>
 		</form>
