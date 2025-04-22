@@ -28,6 +28,22 @@
 				</select>
 			</div>
 
+			<div class="mb-3">
+				<label class="form-label">Tag</label>
+				@foreach($tags as $tag)
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="{{ $tag->id }}" name="tags[]"
+						@foreach ($post->tags as $postTag)
+							{{ $postTag->id == $tag->id ? ' checked' : '' }}
+						@endforeach
+						>
+						<label class="form-check-label" for="{{ $tag->id }}">
+							{{ $tag->title }}
+						</label>
+					</div>
+				@endforeach
+			</div>
+
 			<button type="submit" class="btn btn-primary">Save post</button>
 		</form>
 	</div>
