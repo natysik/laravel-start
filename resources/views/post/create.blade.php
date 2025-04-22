@@ -16,6 +16,13 @@
 				<label for="image" class="form-label">Image</label>
 				<input type="text" name="image" class="form-control" id="image" aria-describedby="Image">
 			</div>
+
+			<select class="form-select mb-3" aria-label="Select category" name="category_id">
+				@foreach($categories as $category)
+					<option value="{{ $category->id }}"> {{ $category->title }}</option>
+				@endforeach
+			</select>
+
 			<button type="submit" class="btn btn-primary">Add post</button>
 		</form>
 	</div>
