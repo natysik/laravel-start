@@ -24,9 +24,9 @@
 
 			<div class="mb-3">
 				<label for="image" class="form-label">Image</label>
-				<input type="text" name="image" class="form-control" id="image" aria-describedby="Image" value="{{ old('image') }}">
+				<input type="text" name="img" class="form-control" id="image" aria-describedby="Image" value="{{ old('image') }}">
 
-				@error('image')
+				@error('img')
 				<p class="text-danger">{{ $message }}</p>
 				@enderror
 			</div>

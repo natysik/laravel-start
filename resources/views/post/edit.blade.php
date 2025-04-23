@@ -15,7 +15,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="image" class="form-label">Image</label>
-				<input type="text" name="image" class="form-control" id="image" aria-describedby="Image" value="{{ $post->image }}">
+				<input type="text" name="img" class="form-control" id="image" aria-describedby="Image" value="{{ $post->img }}">
 			</div>
 
 			<div class="mb-3">
