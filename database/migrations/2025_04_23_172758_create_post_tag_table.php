@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnDescriptionToPostsTable extends Migration
+class CreatePostTagTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,8 +13,11 @@ class AddColumnDescriptionToPostsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::table('posts', function (Blueprint $table) {
-			$table->text('description')->nullable()->after('title');
+		Schema::create('post_tag', function (Blueprint $table) {
+			$table->id();
+			$table->unsignedBigInteger('post_id');
+			$table->unsignedBigInteger('tag_id');
+			$table->timestamps();
 		});
 	}
 
@@ -25,8 +28,6 @@ class AddColumnDescriptionToPostsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::table('posts', function (Blueprint $table) {
-			$table->dropColumn('description');
-		});
+		Schema::dropIfExists('post_tag');
 	}
 }

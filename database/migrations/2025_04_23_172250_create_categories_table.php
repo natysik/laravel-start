@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DeleteDescriptionColumnToPostsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,8 +13,10 @@ class DeleteDescriptionColumnToPostsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::table('posts', function (Blueprint $table) {
-			$table->dropColumn('description');
+		Schema::create('categories', function (Blueprint $table) {
+			$table->id();
+			$table->string('title');
+			$table->timestamps();
 		});
 	}
 
@@ -25,8 +27,6 @@ class DeleteDescriptionColumnToPostsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::table('posts', function (Blueprint $table) {
-			$table->text('description')->nullable()->after('title');
-		});
+		Schema::dropIfExists('categories');
 	}
 }

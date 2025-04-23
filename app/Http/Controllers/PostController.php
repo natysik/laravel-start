@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\{
 	Category,
 	Post,
-	PostTag,
 	Tag
 };
 use Illuminate\Http\Request;
@@ -14,7 +13,10 @@ class PostController extends Controller
 {
 	public function index()
 	{
-		$posts = Post::all();
+		$post = Post::find(1);
+		foreach ($post->tag as $tag) {
+			echo $tag->title;
+		}
 		return view('post.index', compact('posts'));
 	}
 

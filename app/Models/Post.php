@@ -3,22 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\{
-	Model,
-	SoftDeletes
-};
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
 	use HasFactory;
-	use SoftDeletes;
 
-	protected $table = 'posts';
-	//Для возможности добавление данных в таблицу $table
-	protected $guarded = [];
-
-	public function tags()
+	public function category()
 	{
-		return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
+		return $this->belongsTo(Category::class);
+	}
+
+	public function tag()
+	{
+		return $this->belongsToMany(Tag::class);
 	}
 }
