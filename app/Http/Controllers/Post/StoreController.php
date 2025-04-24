@@ -4,18 +4,13 @@ namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Http\Requests\Post\StoreRequest;
 
 class StoreController extends Controller
 {
-	public function __invoke()
+	public function __invoke(StoreRequest $request)
 	{
-		$postInfo = request()->validate([
-			'title' => 'required|string',
-			'content' => 'string',
-			'img' => 'string',
-			'category_id' => 'integer',
-			'tags' => ''
-		]);
+		$postInfo = $request->validated();
 
 		$tags = $postInfo['tags'];
 		unset($postInfo['tags']);
