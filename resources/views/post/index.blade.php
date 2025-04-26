@@ -4,10 +4,16 @@
 <div>
     <div><a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">Add post</a></div>
 
-    @foreach($posts as $post)
-    <div>
-        <a href="{{ route('posts.show', $post->id) }}"> {{ $post->id }}. {{ $post->title }} </a>
+    <div class="mb-3">
+        @foreach($posts as $post)
+            <div>
+                <a href="{{ route('posts.show', $post->id) }}"> {{ $post->id }}. {{ $post->title }} </a>
+            </div>
+        @endforeach
     </div>
-    @endforeach
+
+    <div>
+        {{ $posts->links() }}
+    </div>
 </div>
 @endsection
