@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\FilterRequest;
+use App\Http\Resources\Post\PostResource;
 use App\Models\Post;
 use App\Http\Filters\PostFilter;
 
@@ -16,6 +17,6 @@ class IndexController extends Controller
 
 		$posts = Post::filter($filter)->paginate(10);
 
-		return view('post.index', compact('posts'));
+		return PostResource::collection($posts);
 	}
 }
